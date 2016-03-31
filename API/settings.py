@@ -88,11 +88,11 @@ WSGI_APPLICATION = 'API.wsgi.application'
 #Everyone must change the password of the root to 'logistics'
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Logistics',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-        'USER': 'root',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'rahulkumarwp$Logistics',
+        'HOST': 'mysql.server',
+        'PORT': '3306',
+        'USER': 'rahulkumarwp',
         'PASSWORD': 'logistics',
     }
 }
