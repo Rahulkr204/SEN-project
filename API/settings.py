@@ -89,10 +89,10 @@ WSGI_APPLICATION = 'API.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'rahulkumarwp$Logistics',
-        'HOST': 'mysql.server',
+        'NAME': 'Logistics',
+        'HOST': 'localhost',
         'PORT': '3306',
-        'USER': 'rahulkumarwp',
+        'USER': 'root',
         'PASSWORD': 'logistics',
     }
 }
