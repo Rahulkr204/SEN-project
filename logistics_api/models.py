@@ -37,7 +37,7 @@ class Trip(models.Model):
 
 class Driver(models.Model):
 	driver_id = models.IntegerField(default=0, primary_key=True)
-	name = models.CharField(max_length=30)
+	name = models.CharField(max_length=30, default='x')
 	password = models.CharField(max_length=20)
 	#attendance = models.CharField(max_length=30)
 
