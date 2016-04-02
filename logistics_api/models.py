@@ -5,6 +5,7 @@ from time import time
 from django.forms import ModelForm
 
 # Create your models here.
+# There will be so many changes in the models dont use them! 
 class Orders(models.Model):
 	order_id = models.IntegerField(default=0, primary_key = True)
 	user_id = models.ForeignKey(User)
