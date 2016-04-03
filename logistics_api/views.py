@@ -81,7 +81,7 @@ class UserList(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        queryset = User.objects.all()
+        queryset = Logistics_user.objects.all()
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
