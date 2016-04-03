@@ -1,44 +1,53 @@
 from django.db import models
 from django.contrib.auth.models import User
-#from .titles import mapping
 from time import time
 from django.forms import ModelForm
 
 # Create your models here.
-# There will be so many changes in the models dont use them! 
+
+class Logistics_user(models.Model):
+	contact_num = models.IntegerField(default=0, primary_key=True)#check the range of this integer! Also make this a biginteger!
+	email_id = models.CharField(max_length=80)
+	name = models.CharField(max_length=50)
+	password = models.CharField(max_length=30)
+
+	def __str__(self):
+		return str(self.contact_num)
+
 class Orders(models.Model):
 	order_id = models.IntegerField(default=0, primary_key = True)
-	user_id = models.ForeignKey(User)
 	goods_type = models.CharField(max_length=30)
-	order_status = models.CharField(max_length=10)
-	trip_id = models.CharField(max_length=10)
+	order_status = models.CharField(max_length=10) 
 	quantity = models.IntegerField(default=0)
-	source = models.CharField(max_length=360)#check this once!
+	source = models.CharField(max_length=360)
 	destination = models.CharField(max_length=360)
-	date = models.DateTimeField(db_index=True, auto_now_add=True)
-	contact_num = models.CharField(max_length=30)#review once
+	#date = models.DateTimeField(db_index=True, auto_now_add=True)#take in milliseconds as long. (Use BigInteger field in models)
+	contact_num = models.ForeignKey(Logistics_user, null=True, on_delete=models.SET_NULL) 
 
-class User(models.Model):
-	user_id = models.CharField(max_length=100, primary_key=True)
-	name = models.CharField(max_length=50)
+	def __str__(self):
+		return str(self.order_id)
 
 class Truck(models.Model):
 	truck_id = models.CharField(max_length=20, primary_key=True)
 	truck_capacity = models.IntegerField(default=0)
 	remaining_capacity = models.CharField(max_length=10)
 
+	def __str__(self):
+		return str(self.truck_id)
+
 class Trip(models.Model):
 	trip_id = models.CharField(max_length=20, primary_key=True)
 	trip_capacity = models.CharField(max_length=20)
-	waypoint = models.CharField(max_length=360)#check this once!
+	waypoint = models.CharField(max_length=360)#check this once!check the maximum capacity of the cahracter field. 
 	location = models.CharField(max_length=360)
-	user_id = models.ForeignKey(User)
-	order_id = models.ForeignKey(Orders)
+	order_id = models.ForeignKey(Orders, null=True, on_delete=models.SET_NULL)
 	truck_id = models.ForeignKey(Truck)
+
+	def __str__(self):
+		return str(self.trip_id)
 
 class Driver(models.Model):
 	driver_id = models.IntegerField(default=0, primary_key=True)
-	name = models.CharField(max_length=30, default='x')
+	name = models.CharField(max_length=30)
 	password = models.CharField(max_length=20)
-	#attendance = models.CharField(max_length=30)
-
+	trip_id = models.ForeignKey(Trip, null=True, on_delete=models.SET_NULL)
