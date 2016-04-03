@@ -6,14 +6,14 @@ from models import Orders, User, Trip, Driver, Truck
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('user_id', 'name')
+        fields = ('contact_num', 'email_id','name', 'password')
 
 class OrdersSerializer(serializers.ModelSerializer):
 	user_id = UserSerializer()
 
 	class Meta:
 		model = Orders
-		fields = ('order_id', 'user_id', 'goods_type', 'order_status', 'trip_id', 'quantity', 'source', 'destination', 'date', 'contact_num')
+		fields = ('order_id', 'goods_type', 'order_status', 'quantity', 'source', 'destination', 'contact_num')
 
 class TruckSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -27,12 +27,12 @@ class TripSerializer(serializers.HyperlinkedModelSerializer):
 
 	class Meta:
 		model = Trip
-		fields = ('trip_id', 'trip_capacity', 'waypoint', 'location', 'user_id', 'order_id', 'truck_id')
+		fields = ('trip_id', 'trip_capacity', 'waypoint', 'location', 'order_id', 'truck_id')
 
 class DriverSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Driver
-        fields = ('driver_id', 'name', 'password')
+        fields = ('driver_id', 'name', 'password', 'trip_id')
 
 
 
