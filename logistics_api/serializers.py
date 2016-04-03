@@ -12,7 +12,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 class OrdersSerializer(serializers.ModelSerializer):
 	context={'request': requests}
-	user_id = UserSerializer()
+	contact_num = UserSerializer()
 
 	class Meta:
 		model = Orders
@@ -26,7 +26,6 @@ class TruckSerializer(serializers.HyperlinkedModelSerializer):
 
 class TripSerializer(serializers.HyperlinkedModelSerializer):
 	context={'request': requests}
-	user_id = UserSerializer()
 	order_id = OrdersSerializer()
 	truck_id = TruckSerializer()
 
