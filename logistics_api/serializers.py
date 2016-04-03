@@ -13,7 +13,7 @@ class OrdersSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Orders
-		fields = ('order_id', 'goods_type', 'order_status', 'quantity', 'source', 'destination', 'contact_num')
+		fields = ('order_id', 'goods_type', 'order_status', 'quantity', 'source', 'destination', 'contact_num_id')
 
 class TruckSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -27,12 +27,12 @@ class TripSerializer(serializers.HyperlinkedModelSerializer):
 
 	class Meta:
 		model = Trip
-		fields = ('trip_id', 'trip_capacity', 'waypoint', 'location', 'order_id', 'truck_id')
+		fields = ('trip_id', 'trip_capacity', 'waypoint', 'location', 'order_id-id', 'truck_id_id')
 
 class DriverSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Driver
-        fields = ('driver_id', 'name', 'password', 'trip_id')
+        fields = ('driver_id', 'name', 'password', 'trip_id_id')
 
 
 
