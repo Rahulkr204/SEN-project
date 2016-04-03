@@ -5,7 +5,7 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.views import APIView
 from serializers import UserSerializer, OrdersSerializer, TruckSerializer, TripSerializer, DriverSerializer
-from models import Orders, User, Truck, Trip, Driver
+from models import Orders, Logistics_user, Truck, Trip, Driver
 from django.http import HttpResponse
 from rest_framework.response import Response
 
@@ -76,7 +76,7 @@ class TruckList(APIView):
 class UserList(APIView):
 
     def get(self, request, format=None):
-        users = User.objects.all()
+        users = Logistics_user.objects.all()
         serializer = UserSerializer(users, many=True,context={'request': request})
         return Response(serializer.data)
 
