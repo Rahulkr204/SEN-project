@@ -15,7 +15,7 @@ class OrdersList(APIView):
 
     def get(self, request, format=None):
         orders = Orders.objects.all()
-        serializer = OrdersSerializer(orders, many=True)
+        serializer = OrdersSerializer(orders, many=True,context={'request': request})
         return Response(serializer.data)
 
     def post(self, request, format=None):
@@ -31,7 +31,7 @@ class DriverList(APIView):
 
     def get(self, request, format=None):
         drivers = Driver.objects.all()
-        serializer = DriverSerializer(drivers, many=True)
+        serializer = DriverSerializer(drivers, many=True,context={'request': request})
         return Response(serializer.data)
 
     def post(self, request, format=None):
@@ -47,7 +47,7 @@ class TripList(APIView):
 
     def get(self, request, format=None):
         trips = Trip.objects.all()
-        serializer = TripSerializer(trips, many=True)
+        serializer = TripSerializer(trips, many=True,context={'request': request})
         return Response(serializer.data)
 
     def post(self, request, format=None):
@@ -62,7 +62,7 @@ class TruckList(APIView):
 
     def get(self, request, format=None):
         trucks = Truck.objects.all()
-        serializer = TruckSerializer(trucks, many=True)
+        serializer = TruckSerializer(trucks, many=True,context={'request': request})
         return Response(serializer.data)
 
     def post(self, request, format=None):
@@ -77,7 +77,7 @@ class UserList(APIView):
 
     def get(self, request, format=None):
         users = User.objects.all()
-        serializer = UserSerializer(users, many=True)
+        serializer = UserSerializer(users, many=True,context={'request': request})
         return Response(serializer.data)
 
     def post(self, request, format=None):
