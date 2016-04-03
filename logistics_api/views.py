@@ -2,8 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from django.contrib.auth.models import User, Group
-from rest_framework import viewsets, generics, status
+from rest_framework import status
 from rest_framework.views import APIView
 from serializers import UserSerializer, OrdersSerializer, TruckSerializer, TripSerializer, DriverSerializer
 from models import Orders, User, Truck, Trip, Driver
@@ -28,6 +27,7 @@ class OrdersList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class DriverList(APIView):
+    #permission_classes = (permissions.AllowAny,)
 
     def get(self, request, format=None):
         drivers = Driver.objects.all()
