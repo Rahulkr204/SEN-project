@@ -1,13 +1,13 @@
 from django.contrib.auth.models import User, Group
 import requests
 from rest_framework import serializers
-from models import Orders, User, Trip, Driver, Truck
+from models import Orders, Logistics_user, Trip, Driver, Truck
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     context={'request': requests}
     class Meta:
-        model = User
+        model = Logistics_user
         fields = ('contact_num', 'email_id','name', 'password')
 
 class OrdersSerializer(serializers.ModelSerializer):
