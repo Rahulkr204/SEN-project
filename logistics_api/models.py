@@ -17,12 +17,12 @@ class Logistics_user(models.Model):
 class Orders(models.Model):
 	order_id = models.IntegerField(default=0, primary_key = True)
 	goods_type = models.CharField(max_length=30)
-	order_status = models.CharField(max_length=10) 
+	order_status = models.CharField(max_length=10)
 	quantity = models.IntegerField(default=0)
 	source = models.CharField(max_length=360)
 	destination = models.CharField(max_length=360)
 	#date = models.DateTimeField(db_index=True, auto_now_add=True)#take in milliseconds as long. (Use BigInteger field in models)
-	contact_num = models.ForeignKey(Logistics_user, null=True, on_delete=models.SET_NULL) 
+	contact_num = models.ForeignKey(Logistics_user, null=True, on_delete=models.SET_NULL)
 
 	def __str__(self):
 		return str(self.order_id)
@@ -30,15 +30,15 @@ class Orders(models.Model):
 class Truck(models.Model):
 	truck_id = models.CharField(max_length=20, primary_key=True)
 	truck_capacity = models.IntegerField(default=0)
-	remaining_capacity = models.CharField(max_length=10)
+	remaining_capacity = models.CharField(max_length=10)#change this to integer field
 
 	def __str__(self):
 		return str(self.truck_id)
 
 class Trip(models.Model):
 	trip_id = models.CharField(max_length=20, primary_key=True)
-	trip_capacity = models.CharField(max_length=20)
-	waypoint = models.CharField(max_length=360)#check this once!check the maximum capacity of the cahracter field. 
+	trip_capacity = models.CharField(max_length=20)#integer field
+	waypoint = models.CharField(max_length=360)#check this once!check the maximum capacity of the cahracter field.
 	location = models.CharField(max_length=360)
 	order_id = models.ForeignKey(Orders, null=True, on_delete=models.SET_NULL)
 	truck_id = models.ForeignKey(Truck)

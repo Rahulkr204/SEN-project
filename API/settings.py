@@ -25,7 +25,7 @@ SECRET_KEY = '3+(!6_6m%lj)x^%x-@edmk3799f!l74uf^y*)#xy9wp#$$(^w%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = (
 )
 
 REST_FRAMEWORK = {
+    #'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
    # 'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'],
    'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
@@ -120,5 +121,5 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.dirname(os.path.abspath(__file__)) + '/static'
 
 STATICFILES_DIRS = (
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/API/static',
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/logistics_api/static',
 )
