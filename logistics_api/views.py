@@ -88,5 +88,89 @@ class UserList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def update(self, instance, validated_data):
+        instance.email_id = validated_data.get('email_id', instance.email_id)
+        instance.name = validated_data.get('name', instance.name)
+        instance.password = validated_data.get('password', instance.password)
+        return instance
+
+
+class UserDetail(APIView):
+
+    def get(self, request, pk, format=None):
+        user = Logistics_user.objects.filter(pk=pk[0])
+        serializer = UserSerializer(user , many=True, context={'request': request})
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        user = Logistics_user.objects.get(pk=pk[0])
+        serializer = UserSerializer(user, data=request.data)#, many=True, context={'request': request})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class OrdersDetail(APIView):
+
+    def get(self, request, pk):
+        order = Orders.objects.filter(pk=pk[0])
+        serializer = OrdersSerializer(order , many=True, context={'request': request})
+        return Response(serializer.data)
+
+    def put(self, request, pk):
+        order = Orders.objects.filter(pk=pk[0])
+        serializer = OrdersSerializer(order, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class TruckDetail(APIView):
+
+    def get(self, request, pk):
+        truck = Truck.objects.filter(pk=pk[0])
+        serializer = TruckSerializer(truck , many=True, context={'request': request})
+        return Response(serializer.data)
+
+    def put(self, request, pk):
+        truck = Truck.objects.filter(pk=pk[0])
+        serializer = TruckSerializer(truck, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class TripDetail(APIView):
+
+    def get(self, request, pk):
+        trip = Trip.objects.filter(pk=pk[0])
+        serializer = TripSerializer(trip , many=True, context={'request': request})
+        return Response(serializer.data)
+
+    def put(self, request, pk):
+        trip = Trip.objects.filter(pk=pk[0])
+        serializer = TripSerializer(trip, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class DriverDetail(APIView):
+
+    def get(self, request, pk):
+        driver = Driver.objects.filter(pk=pk[0])
+        serializer = DriverSerializer(driver , many=True, context={'request': request})
+        return Response(serializer.data)
+
+    def put(self, request, pk):
+        driver = Driver.objects.filter(pk=pk[0])
+        serializer = DriverSerializer(driver, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 def home(request):
     return render(request, 'homepage.html')

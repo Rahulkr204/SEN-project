@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
 from time import time
 from django.forms import ModelForm
 

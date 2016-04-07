@@ -25,7 +25,7 @@ SECRET_KEY = '3+(!6_6m%lj)x^%x-@edmk3799f!l74uf^y*)#xy9wp#$$(^w%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'logistics_api',
+    'corsheaders',
 )
 
 REST_FRAMEWORK = {
@@ -60,8 +61,33 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 )
 
+#CORS_URLS_REGEX = '^.*$'
+
+CORS_ORIGIN_REGEX_WHITELIST = ()
+
+CORS_ALLOW_METHODS = (
+        'GET',
+        'POST',
+        'PUT',
+        'PATCH',
+        'DELETE',
+        'OPTIONS'
+    )
+
+CORS_ALLOW_HEADERS = (
+        'x-requested-with',
+        'content-type',
+        'accept',
+        'origin',
+        'authorization',
+        'x-csrftoken'
+    )
+
+CORS_ALLOW_CREDENTIALS = True
 
 
 ROOT_URLCONF = 'API.urls'
