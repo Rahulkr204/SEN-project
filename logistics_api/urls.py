@@ -11,12 +11,11 @@ urlpatterns = patterns('',
 		url(r'^api/userlist/$', views.UserList.as_view()),
 
 		#Following urls give a detailed version of the tables in the database
-		url(r'^api/userdetail/(?P<pk>[0-9]+)/$', views.UserDetail.as_view()),
+		url(r'^api/userdetail/(?P<pk>[0-9]+)$', views.UserDetail.as_view()),
 		url(r'^api/ordersdetail/(?P<pk>[0-9]+)$', views.OrdersDetail.as_view()),
 		url(r'^api/truckdetail/(?P<pk>[0-9]+)$', views.TruckDetail.as_view()),
-		url(r'^api/tripdetail/(?P<pk>[0-9]+)$', views.TripDetail.as_view()),
-		url(r'^api/driverdetail/(?P<pk>[0-9]+)$', views.DriverDetail.as_view(),
+		url(r'^api/tripdetail/(?P<pk>[a-z0-9]+)$', views.TripDetail.as_view()),
+		url(r'^api/driverdetail/(?P<pk>[0-9]+)$', views.DriverDetail.as_view()),
 	)
-
 
 urlpatterns = format_suffix_patterns(urlpatterns)
