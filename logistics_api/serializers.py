@@ -22,7 +22,7 @@ class TruckSerializer(serializers.ModelSerializer):
     context={'request': requests}
     class Meta:
         model = Truck
-        fields = ('truck_id', 'truck_number','truck_capacity', 'truck_status', 'driver_id')
+        fields = ('truck_id', 'truck_number','truck_capacity', 'truck_status')
 
 class TripSerializer(serializers.ModelSerializer):
 	context={'request': requests}
@@ -37,7 +37,7 @@ class DriverSerializer(serializers.ModelSerializer):
     context={'request': requests}
     class Meta:
         model = Driver
-        fields = ('driver_id', 'name', 'password')
+        fields = ('driver_id', 'name', 'password', 'trip_id', 'truck_id')
 
 
 

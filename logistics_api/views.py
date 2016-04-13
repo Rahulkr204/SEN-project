@@ -104,6 +104,11 @@ class UserDetail(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def delete(self, request, pk):
+        user = Logistics_user.objects.get(pk=pk)
+        user.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 class OrdersDetail(APIView):
 
     def get(self, request, pk):
@@ -118,6 +123,11 @@ class OrdersDetail(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        order = Orders.objects.get(pk=pk)
+        order.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class TruckDetail(APIView):
 
@@ -134,6 +144,10 @@ class TruckDetail(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def delete(self, request, pk):
+        truck = Truck.objects.get(pk=pk)
+        truck.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class TripDetail(APIView):
 
@@ -170,6 +184,10 @@ class DriverDetail(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def delete(self, request, pk):
+        driver = Driver.objects.get(pk=pk)
+        driver.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 def home(request):
     return render(request, 'homepage.html')

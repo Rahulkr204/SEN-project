@@ -19,27 +19,17 @@ class Orders(models.Model):
 	source = models.CharField(max_length=360)
 	destination = models.CharField(max_length=360)
 	add_contact_num = models.BigIntegerField(default=0)
-	additional_info = models.CharField(max_length=360, default=' ')
+	additional_info = models.CharField(max_length=360, default='No additional information provided')
 	contact_num = models.ForeignKey(Logistics_user, null=True, on_delete=models.SET_NULL)
 
 	def __unicode__(self):
 		return str(self.order_id)
-
-
-class Driver(models.Model):
-	driver_id = models.IntegerField(default=0, primary_key=True)
-	name = models.CharField(max_length=30)
-	password = models.CharField(max_length=20)
-
-	def __unicode__(self):
-	    return str(self.driver_id)
 
 class Truck(models.Model):
     truck_id = models.IntegerField(default=0, primary_key = True)
     truck_number = models.CharField(max_length=20, default=' ')
     truck_capacity = models.IntegerField(default=0)
     truck_status = models.CharField(max_length=20, default='InGarage')
-    driver_id = models.ForeignKey(Driver,null=True, on_delete=models.SET_NULL)
 
     def __unicode__(self):
         return str(self.truck_id)
@@ -54,3 +44,13 @@ class Trip(models.Model):
 
 	def __unicode__(self):
 		return str(self.trip_id)
+
+class Driver(models.Model):
+	driver_id = models.IntegerField(default=0, primary_key=True)
+	name = models.CharField(max_length=30)
+	password = models.CharField(max_length=20)
+	trip_id = models.ForeignKey(Trip,null=True, on_delete=models.SET_NULL)
+	truck_id = models.ForeignKey(Truck,null=True, on_delete=models.SET_NULL)
+
+	def __unicode__(self):
+	    return str(self.driver_id)
